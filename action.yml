@@ -1,0 +1,15 @@
+name: 'My first action'
+description: 'Say hello'
+inputs:
+  name:
+    description: Your name
+    required: true
+    default: 'world'
+outputs:
+  time:
+    description: 'The time'
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+    - ${{ inputs.name }}
