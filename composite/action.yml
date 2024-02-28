@@ -1,0 +1,25 @@
+name: 'My first composite action'
+description: 'Say hello'
+inputs:
+  name:
+    description: Your name
+    required: true
+    default: 'world'
+outputs:
+  time:
+    description: 'The time'
+    value: ${{ steps.time-output.outputs.time }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set Greeting
+      run: echo "Hello $INPUT_WHO_TO_GREET."
+      shell: bash
+      env:
+        INPUT_WHO_TO_GREET: ${{ inputs.name }}
+
+    - name: Time output
+      id: time-output
+      run: echo "time=$(date)" >> $GITHUB_OUTPUT
+      shell: bash
