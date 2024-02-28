@@ -16,3 +16,17 @@ jobs:
           name: 'Jesse'
 
       - run: echo "The time was ${{ steps.runit.outputs.time }}"
+
+  test-composite-action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: run composite
+        id: run-composite
+        uses: ./composite
+        with:
+          name: 'Jesse-Composite'
+          
+      - run: echo "The time was ${{ steps.run-composite-outputs.time }}"
