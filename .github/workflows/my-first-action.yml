@@ -29,5 +29,6 @@ jobs:
   deploy_prod:
     runs-on: ubuntu-latest
     environment: Production
+    needs: deploy_test
     steps:
       - run: echo "Deploying to prod!"
